@@ -87,7 +87,7 @@
 		xs: 320
 	};
 
-	$: assertGridOptions({ cols, rows, itemSize });
+	$: assertGridOptions({ cols, rows, itemSize, collision });
 
 	/**
 	 * Bound the grid items to the grid container.
@@ -175,7 +175,7 @@
 	}
 
 	$: if (collision !== 'none') {
-		rows = 0;
+		_rows = 0;
 	}
 
 	/**
@@ -272,7 +272,7 @@
 	class={`svelte-grid-extended ${classes}`}
 	bind:this={gridContainer}
 	style={`width: ${containerWidth ? `${containerWidth}px` : '100%'}; 
-	height: ${containerHeight ? `${containerHeight}px` : '100%'};`}
+	height: ${containerHeight ? `${containerHeight}px` : '100%'}; ${$$restProps.style ?? ''}`}
 >
 	{#if $gridSettings.itemSize}
 		<slot />
